@@ -25664,7 +25664,7 @@
 	    }
 	    function renderError() {
 	      if (typeof errorMessage === 'string') {
-	        return React.createElement(ErrorModal, null);
+	        return React.createElement(ErrorModal, { message: errorMessage });
 	      }
 	    }
 
@@ -25772,8 +25772,8 @@
 	      } else {
 	        return res.data.main.temp;
 	      }
-	    }, function (res) {
-	      throw new Error(res.data.message);
+	    }, function (err) {
+	      throw new Error(err.response.data.message);
 	    });
 	  }
 	};
@@ -29312,23 +29312,36 @@
 	var ErrorModal = React.createClass({
 	  displayName: 'ErrorModal',
 
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      title: 'Error'
+	    };
+	  },
+	  propTypes: {
+	    title: React.PropTypes.string,
+	    message: React.PropTypes.string.isRequired
+	  },
 	  componentDidMount: function componentDidMount() {
 	    var modal = new Foundation.Reveal($('#error-modal'));
 	    modal.open();
 	  },
 	  render: function render() {
+	    var _props = this.props,
+	        title = _props.title,
+	        message = _props.message;
+
 	    return React.createElement(
 	      'div',
 	      { id: 'error-modal', className: 'reveal tiny text-center', 'data-reveal': '' },
 	      React.createElement(
 	        'h4',
 	        null,
-	        'Title'
+	        title
 	      ),
 	      React.createElement(
 	        'p',
 	        null,
-	        'Error message'
+	        message
 	      ),
 	      React.createElement(
 	        'p',
@@ -29366,7 +29379,7 @@
 	    React.createElement(
 	      "p",
 	      null,
-	      "This is a weather application build on React. I have built this for The Complete React Web App Developer Course."
+	      "This is a weather application build on React. I have built this with The Complete React Web App Developer Course."
 	    ),
 	    React.createElement(
 	      "p",

@@ -106,15 +106,15 @@
 
 	var Main = __webpack_require__(229);
 	var Weather = __webpack_require__(231);
-	var About = __webpack_require__(265);
-	var Examples = __webpack_require__(266);
+	var About = __webpack_require__(266);
+	var Examples = __webpack_require__(267);
 
 	// Load foundation
-	__webpack_require__(267);
+	__webpack_require__(268);
 	$(document).foundation();
 
 	// Custom css
-	__webpack_require__(272);
+	__webpack_require__(273);
 
 	ReactDOM.render(React.createElement(
 	  Router,
@@ -25652,7 +25652,6 @@
 	        isLoading: false,
 	        errorMessage: e.message
 	      });
-	      alert(errorMessage);
 	    });
 	  },
 	  componentDidMount: function componentDidMount() {
@@ -25800,8 +25799,8 @@
 	      } else {
 	        return res.data.main.temp;
 	      }
-	    }, function (err) {
-	      throw new Error(err.response.data.message);
+	    }, function (res) {
+	      throw new Error(res.data.message);
 	    });
 	  }
 	};
@@ -29336,6 +29335,8 @@
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var React = __webpack_require__(8);
+	var ReactDOM = __webpack_require__(165);
+	var ReactDOMServer = __webpack_require__(265);
 
 	var ErrorModal = React.createClass({
 	  displayName: 'ErrorModal',
@@ -29350,15 +29351,12 @@
 	    message: React.PropTypes.string.isRequired
 	  },
 	  componentDidMount: function componentDidMount() {
-	    var modal = new Foundation.Reveal($('#error-modal'));
-	    modal.open();
-	  },
-	  render: function render() {
 	    var _props = this.props,
 	        title = _props.title,
 	        message = _props.message;
 
-	    return React.createElement(
+
+	    var modalMarkup = React.createElement(
 	      'div',
 	      { id: 'error-modal', className: 'reveal tiny text-center', 'data-reveal': '' },
 	      React.createElement(
@@ -29381,6 +29379,14 @@
 	        )
 	      )
 	    );
+	    var $modal = $(ReactDOMServer.renderToString(modalMarkup));
+	    $(ReactDOM.findDOMNode(this)).html($modal);
+
+	    var modal = new Foundation.Reveal($('#error-modal'));
+	    modal.open();
+	  },
+	  render: function render() {
+	    return React.createElement('div', null);
 	  }
 	});
 
@@ -29389,6 +29395,15 @@
 
 /***/ }),
 /* 265 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = __webpack_require__(155);
+
+
+/***/ }),
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29444,7 +29459,7 @@
 	module.exports = About;
 
 /***/ }),
-/* 266 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29496,13 +29511,13 @@
 	module.exports = Examples;
 
 /***/ }),
-/* 267 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(268);
+	var content = __webpack_require__(269);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -29510,7 +29525,7 @@
 	var options = {}
 	options.transform = transform
 	// add the styles to the DOM
-	var update = __webpack_require__(270)(content, options);
+	var update = __webpack_require__(271)(content, options);
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29527,10 +29542,10 @@
 	}
 
 /***/ }),
-/* 268 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(269)(undefined);
+	exports = module.exports = __webpack_require__(270)(undefined);
 	// imports
 
 
@@ -29541,7 +29556,7 @@
 
 
 /***/ }),
-/* 269 */
+/* 270 */
 /***/ (function(module, exports) {
 
 	/*
@@ -29623,7 +29638,7 @@
 
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/*
@@ -29669,7 +29684,7 @@
 	var	singletonCounter = 0;
 	var	stylesInsertedAtTop = [];
 
-	var	fixUrls = __webpack_require__(271);
+	var	fixUrls = __webpack_require__(272);
 
 	module.exports = function(list, options) {
 		if (false) {
@@ -29982,7 +29997,7 @@
 
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports) {
 
 	
@@ -30077,13 +30092,13 @@
 
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(273);
+	var content = __webpack_require__(274);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// Prepare cssTransformation
 	var transform;
@@ -30091,7 +30106,7 @@
 	var options = {}
 	options.transform = transform
 	// add the styles to the DOM
-	var update = __webpack_require__(270)(content, options);
+	var update = __webpack_require__(271)(content, options);
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -30108,10 +30123,10 @@
 	}
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(269)(undefined);
+	exports = module.exports = __webpack_require__(270)(undefined);
 	// imports
 
 

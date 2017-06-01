@@ -25656,9 +25656,9 @@
 	      'div',
 	      null,
 	      React.createElement(
-	        'h3',
-	        null,
-	        'Weather Component'
+	        'h1',
+	        { className: 'text-center' },
+	        'Get Weather'
 	      ),
 	      React.createElement(WeatherForm, { onSearch: this.handleSearch }),
 	      renderMessage()
@@ -25695,7 +25695,7 @@
 	        'form',
 	        { onSubmit: this.onFormSubmit },
 	        React.createElement('input', { type: 'text', ref: 'location' }),
-	        React.createElement('input', { type: 'submit', value: 'Get weather' })
+	        React.createElement('input', { type: 'submit', className: 'button expanded hollow', value: 'Get weather' })
 	      )
 	    );
 	  }
@@ -25707,7 +25707,7 @@
 /* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var React = __webpack_require__(8);
 
@@ -25716,13 +25716,13 @@
 	      location = _ref.location;
 
 	  return React.createElement(
-	    'h3',
-	    null,
-	    'It is ',
+	    "h1",
+	    { className: "text-center" },
+	    "It is ",
 	    temp,
-	    ' Celsius in ',
+	    " degrees Celsius in ",
 	    location,
-	    '.'
+	    "."
 	  );
 	};
 
